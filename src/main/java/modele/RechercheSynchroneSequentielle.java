@@ -14,7 +14,10 @@ public class RechercheSynchroneSequentielle extends RechercheSynchroneAbstraite{
 
     @Override
     public Optional<HyperLien<Livre>> chercher(Livre l, List<HyperLien<Bibliotheque>> bibliotheques, Client client) {
-        return this.chercher(l, bibliotheques, client);
+        for (HyperLien<Bibliotheque> b: bibliotheques) {
+            return this.rechercheSync(b, l, client);
+        }
+        return Optional.empty();
     }
 
     @Override

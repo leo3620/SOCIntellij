@@ -11,7 +11,9 @@ import infrastructure.jaxrs.Outils;
 
 public abstract class RechercheSynchroneAbstraite implements AlgorithmeRecherche {
 
-	protected Optional<HyperLien<Livre>> rechercheSync(HyperLien<Bibliotheque> h, Livre l, Client client){
+    protected NomAlgorithme nomAlgorithme;
+
+    protected Optional<HyperLien<Livre>> rechercheSync(HyperLien<Bibliotheque> h, Livre l, Client client){
 		Outils.afficherInfoTache("recherche synchrone");
 		Bibliotheque bibli = LienVersRessource.proxy(client, h, Bibliotheque.class);
 		return bibli.chercher(l);

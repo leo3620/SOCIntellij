@@ -17,6 +17,8 @@ import javax.ws.rs.core.GenericType;
 
 public abstract class RechercheAsynchroneAbstraite implements AlgorithmeRecherche {
 
+	protected ImplemNomAlgorithme nomAlgorithme;
+
 	protected Future<Optional<HyperLien<Livre>>> rechercheAsync(HyperLien<Bibliotheque> h, Livre l, Client client){
 		WebTarget wt = client.target(h.getUri());
 		return wt.path(JAXRS.SOUSCHEMIN_ASYNC)

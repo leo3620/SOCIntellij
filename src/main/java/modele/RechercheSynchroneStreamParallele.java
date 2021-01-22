@@ -14,7 +14,12 @@ public class RechercheSynchroneStreamParallele extends RechercheSynchroneAbstrai
 
     @Override
     public Optional<HyperLien<Livre>> chercher(Livre l, List<HyperLien<Bibliotheque>> bibliotheques, Client client) {
-        return Optional.empty();
+         return bibliotheques
+                .parallelStream()
+                .map(biblio -> this.rechercheSync(biblio, l, client))
+                .filter(Optional::isPresent)
+                .findAny()
+                .orElse(Optional.empty());
     }
 
     @Override

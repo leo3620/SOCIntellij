@@ -7,8 +7,11 @@
   <groupId>com.example</groupId>
   <artifactId>SOCIntellij</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <modules>
+    <module>client</module>
+  </modules>
   <name>SOCIntellij</name>
-  <packaging>war</packaging>
+  <packaging>pom</packaging>
 
   <properties>
     <maven.compiler.target>1.8</maven.compiler.target>

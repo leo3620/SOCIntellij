@@ -29,15 +29,12 @@ public class RechercheSynchroneMultiTaches extends RechercheSynchroneAbstraite {
             AtomicReference<Optional<HyperLien<Livre>>> atomicLivreReference = new AtomicReference<>(Optional.empty());
 
             for (HyperLien<Bibliotheque> biblioteque : bibliotheques) {
-                threadPool.submit(new Runnable() {
-                    @Override
-                    public void run() {
-                        Optional<HyperLien<Livre>> livreFound = rechercheSync(biblioteque, l, client);
-                        countDownLatch.countDown();
-                        if (livreFound.isPresent()) {
-                            atomicLivreReference.set(livreFound);
-                            liberer(countDownLatch);
-                        }
+                threadPool.submit(() -> {
+                    Optional<HyperLien<Livre>> livreFound = rechercheSync(biblioteque, l, client);
+                    countDownLatch.countDown();
+                    if (livreFound.isPresent()) {
+                        atomicLivreReference.set(livreFound);
+                        liberer(countDownLatch);
                     }
                 });
             }

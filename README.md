@@ -89,3 +89,34 @@
 
 <algo nom="">
 </algo>
+
+
+-- Analyse des résultats : 
+
+*************
+recherche sync seq
+Réalisé en : 7703ms
+*************
+recherche sync multi
+Réalisé en : 1543ms
+*************
+recherche sync stream 8
+Réalisé en : 1532ms
+*************
+recherche sync stream rx
+Réalisé en : 7602ms
+*************
+recherche async seq
+Réalisé en : 7540ms
+*************
+recherche async multi
+Réalisé en : 1519ms
+*************
+recherche async stream 8
+Réalisé en : 1524ms
+*************
+recherche async stream rx
+Réalisé en : 7534ms
+
+Bilan : Les streams semblement etre vraiment plus performants.
+(Par ailleurs, le fait d'utiliser .stream au lieu de .parallalelStream semble également plus interessant)

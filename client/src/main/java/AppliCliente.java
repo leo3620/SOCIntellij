@@ -1,3 +1,5 @@
+import infrastructure.jaxrs.AdapterClientReponsesPUT404EnOption;
+import infrastructure.jaxrs.AdapterClientReponsesPUTEnOption;
 import infrastructure.jaxrs.HyperLien;
 import modele.*;
 import org.glassfish.jersey.client.ClientConfig;
@@ -13,6 +15,8 @@ import java.util.Optional;
 public class AppliCliente {
     public static Client clientJAXRS() {
         ClientConfig config = new ClientConfig();
+        config.register(new AdapterClientReponsesPUT404EnOption());
+        config.register(AdapterClientReponsesPUTEnOption.class);
         return ClientBuilder.newClient(config);
     }
 
@@ -65,12 +69,14 @@ public class AppliCliente {
     }
 
     private static void doTest(Repertoire repertoire) {
+        long temps = System.nanoTime();
         Optional<HyperLien<Livre>> lien = repertoire.chercher(new ImplemLivre("Services5.6"));
-
+        temps = System.nanoTime() - temps;
         if(lien.isPresent()) {
-            System.out.println("TEST SUCCESS ! Book in " + lien.get().getUri());
+            System.out.print("TEST SUCCESS ! Book in " + lien.get().getUri());
         } else {
-            System.out.println("TEST FAILED");
+            System.out.print("TEST FAILED");
         }
+        System.out.println(" Réalisé en : " + (temps / 1000000));
     }
 }

@@ -1,3 +1,6 @@
+# LEO LECLERC  
+# CHARLOTTE LECLERE
+
 # Tp3_Service-oriented-computing
 
 #On supposera que la bibliothèque est déployée à l'adresse BIBLIO et le portail à l'adresse PORTAIL.
@@ -118,5 +121,8 @@ Réalisé en : 1524ms
 recherche async stream rx
 Réalisé en : 7534ms
 
-Bilan : Les streams semblement etre vraiment plus performants.
-(Par ailleurs, le fait d'utiliser .stream au lieu de .parallalelStream semble également plus interessant)
+Bilan : 
+En syncrhone les stream 8 et le multi threading est beaucoup plus performant.
+En ce qui concernent l'asynchrone, on obtient le meme constat.
+Par ailleurs nous avons testé en utilistant .stream plutot que .paralleleStream et on se rend compte que c'est encore plus rapide
+puisque la quantité de donné etant si faible qu'il est plus long de diviser les taches puis de les rassembler que des les faires sequentiellement dans le principe des stream avec Java 8.
